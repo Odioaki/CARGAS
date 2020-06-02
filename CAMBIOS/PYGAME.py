@@ -111,18 +111,13 @@ class world:
         self.screen.blit(self.bg_image,(0,0))
         
     def update(self):
-        self.clock.tick(10)
+        self.clock.tick(10)    
         
-        for o in self.ball:
-            self.screen.blit(self.bg_image,o.pos, o.pos)
-        for l in self.cargas:
-            self.screen.blit(self.bg_image,l.pos, l.pos)
-            
-            
+        for o in self.ball :
+            self.screen.blit(self.bg_image,o.pos,o.pos)
         for i in range(len(self.ball)):
             for j in range(len(self.cargas)):
                 self.ball[i].col(self.cargas[j])
-
         for k in self.cargas:
             self.screen.blit(k.image,k.pos)
             for o in self.ball:
