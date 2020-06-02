@@ -25,6 +25,9 @@ class carga(pygame.sprite.Sprite):
             return (campo[0],campo[1])
         else:
             return(0,0)
+
+   
+
 class ball(pygame.sprite.Sprite):
     
     def __init__(self,pos, vel,magnitud,acel=(4,5)):
@@ -47,7 +50,11 @@ class ball(pygame.sprite.Sprite):
             return (0,0)
         fuerza[0]=self.magnitud*carga.campo(CARGA,self.pos)[0]
         fuerza[1]=self.magnitud*carga.campo(CARGA,self.pos)[1]
+        if self.col(CARGA)==True:
+            return (0,0)
         return (fuerza[0],fuerza[1])
+        
+            
 
     def move(self,CARGA):
         if CARGA.pos[0]==self.pos[0] and CARGA.pos[1]==self.pos[1]:
@@ -60,7 +67,25 @@ class ball(pygame.sprite.Sprite):
 
 
         self.rect=self.pos
-    
+    def col(self, o):
+            if pygame.sprite.collide_mask(self,o) is None:
+                return
+            
+            npspos=np.array((self.pos.x,self.pos.y))
+            npopos=np.array((o.pos.x,o.pos.y))
+            
+            colision = (npspos-npopos)
+            dist=np.sqrt(np.dot(colision, colision))
+            colision=colision/dist
+
+            self.vel = self.vel - self.vel
+            return True
+            
+            
+            
+
+
+
 class intro:
     def __init__(self):
         pygame.init()
@@ -73,12 +98,12 @@ class intro:
         self.clock.tick(10)
         pygame.display.flip()
 class world:
-    def __init__(self,balls,cargas):
+    def __init__(self,ball,cargas):
         
         pygame.init()
         pygame.display.set_caption("Simulador Campo Electrico")
         self.clock=pygame.time.Clock()
-        self.balls=balls
+        self.ball=ball
         self.cargas=cargas
         self.screen = pygame.display.set_mode((800, 600))
         bg_image = pygame.image.load("fondo-pared-ladrillos.jpg")
@@ -88,15 +113,19 @@ class world:
     def update(self):
         self.clock.tick(10)
         
-        for o in self.balls:
+        for o in self.ball:
             self.screen.blit(self.bg_image,o.pos, o.pos)
         for l in self.cargas:
             self.screen.blit(self.bg_image,l.pos, l.pos)
-        
+            
+            
+        for i in range(len(self.ball)):
+            for j in range(len(self.cargas)):
+                self.ball[i].col(self.cargas[j])
 
         for k in self.cargas:
             self.screen.blit(k.image,k.pos)
-            for o in self.balls:
+            for o in self.ball:
                 
                 o.acel=o.fuerza(k)
                 o.move(k)
@@ -110,18 +139,23 @@ class world:
 def main():
     c=ball((500,100),(1,0),20)
     g=ball((0,200),(10,2),-20)
-    v=ball((0,300),(2,0),5)
+    v=ball((0,250),(1.5,0),-5)
     k=ball((300,400),(0,0),10)
     e=carga((350,250),-20)
     f=carga((600,250),-20)
-    l=carga((550,400),20)
+    l=carga((550,500),50)
+    n=carga((550,100),20)
     p=[]
-    for i in range(-200,1000,35):
-        p=p+[carga((i,500),15)]
-        p=p+[carga((i,0),-15)]
-    w=world([v],p)
-    w=world([g,k,c],[e])
-    
+    b=[]
+    for i in range(-200,1000,20):
+        p=p+[carga((i,500),10)]
+        p=p+[carga((i,0),-10)]
+        b=b+[ball((i,400),(0,0),15)]
+        b=b+[ball((i,200),(0,0),-15)]
+    #w=world([v],p)
+    #w=world([g,k,c,v],[e])
+    #w=world(b,[e])
+    w=world(b,[e,f,l,n])
     while True:
         
         for event in pygame.event.get():
