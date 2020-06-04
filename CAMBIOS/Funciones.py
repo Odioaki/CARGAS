@@ -68,6 +68,10 @@ class ball(pygame.sprite.Sprite):
 
 
         self.rect=self.pos
+    def velocidad_orbital(radio, CARGA):
+        k=8.9
+        
+        
     def col(self, o):
             if pygame.sprite.collide_mask(self,o) is None:
                 return

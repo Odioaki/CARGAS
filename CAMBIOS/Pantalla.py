@@ -15,7 +15,7 @@ class world:
         self.screen.blit(self.bg_image,(0,0))
         
     def update(self):
-        self.clock.tick(10)   
+        self.clock.tick(100)   
         bg_image = pygame.image.load("fondo-pared-ladrillos.jpg")
         self.screen.blit(self.bg_image,(0,0))
         
