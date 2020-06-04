@@ -1,7 +1,6 @@
 import pygame,sys
 from pygame.locals import *
 import numpy as np
-
 class world:
     def __init__(self,ball,cargas):
         
@@ -16,8 +15,9 @@ class world:
         self.screen.blit(self.bg_image,(0,0))
         
     def update(self):
-        self.clock.tick(10)    
-        
+        self.clock.tick(10)   
+        bg_image = pygame.image.load("fondo-pared-ladrillos.jpg")
+        self.screen.blit(self.bg_image,(0,0))
         
         for o in self.ball :
             self.screen.blit(self.bg_image,o.pos,o.pos)

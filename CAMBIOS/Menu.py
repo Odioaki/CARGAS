@@ -2,6 +2,8 @@ import pygame,sys
 from pygame.locals import *
 import numpy as np
 
+
+
 class MENU:
     def __init__(self):
         
@@ -9,7 +11,7 @@ class MENU:
         pygame.display.set_caption("Simulador Campo Electrico ")
         self.clock=pygame.time.Clock()
         self.screen = pygame.display.set_mode((800, 600))
-        bg_image = pygame.image.load("fondo-pared-ladrillos.jpg")
+        bg_image = pygame.image.load("MENU.jpg")
         self.bg_image = bg_image.convert()
         self.screen.blit(self.bg_image,(0,0))
     def otra_pantalla(self):
@@ -26,4 +28,3 @@ class MENU:
             
 
             pygame.display.update()
-

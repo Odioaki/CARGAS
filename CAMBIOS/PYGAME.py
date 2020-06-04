@@ -198,16 +198,15 @@ def main():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_q:
                     MENU().otra_pantalla()
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_p:
-                    w.update()
+
+                    
 
             if event.type==QUIT:
                 pygame.quit()
                 sys.exit()
         
 
-        INTRO().otra_pantalla()
+        w.update()
 
             
             

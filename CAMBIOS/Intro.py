@@ -21,7 +21,7 @@ class INTRO:
                     pygame.quit()
                     sys.exit()
                 if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_p:
+                    if event.key == pygame.K_q:
                         otra_pantalla = False
             
 
