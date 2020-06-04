@@ -28,11 +28,11 @@ def main():
     #w=world([v],p)
     #w=world([g,k,c,v],[e])
     #w=world(b,[e])
-    #w=world(b,[e,f,l,n])
+    w=world(b,[e,f,l,n])
     #PRUEBA VELOCIDAD ORBITAL
     PO=ball((0,500),(1.5,0),-5)
     CO=carga((400,300),40)
-    w=world([PO],[CO])
+    #w=world([PO],[CO])
     while True:
     
         for event in pygame.event.get():
