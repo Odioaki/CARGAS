@@ -14,6 +14,9 @@ class MENU:
         self.imagen_panel = pygame.image.load('MENU.jpg')
         self.clock=pygame.time.Clock()
         self.screen = pygame.display.set_mode((800, 600))
+        bg_image = pygame.image.load("MENU.jpg")
+        self.bg_image = bg_image.convert()
+        self.screen.blit(self.bg_image,(0,0))
         
         self.screen.blit(self.imagen_panel,(0,0))
         
