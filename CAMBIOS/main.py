@@ -29,7 +29,7 @@ def main():
                     if event.key == pygame.K_p:
                         otra_pantalla = False
                         world.visual()
-                        
+            
             pygame.display.update() 
 
 main()

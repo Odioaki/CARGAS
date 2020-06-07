@@ -19,8 +19,8 @@ class world:
         
     def update(self):
         self.clock.tick(10)   
-        bg_image = pygame.image.load("fondo-pared-ladrillos.jpg")
-        self.screen.blit(self.bg_image,(0,0))
+        
+        
         
         for o in self.ball :
             self.screen.blit(self.bg_image,o.pos,o.pos)
@@ -40,7 +40,7 @@ class world:
         
         c=ball((500,100),(1,0),20)
         g=ball((0,200),(10,2),-20)
-        v=ball((0,250),(1.5,0),-5)
+        h=ball((0,250),(1.5,0),-5)
         k=ball((300,400),(0,0),10)
         e=carga((350,250),-20)
         f=carga((600,250),-20)
@@ -56,14 +56,18 @@ class world:
         #w=world([v],p)
         #w=world([g,k,c,v],[e])
         #w=world(b,[e])
-        w=world(b,[e,f,l,n])
+        cargas=[e,f,l,n]
+        
         #PRUEBA VELOCIDAD ORBITAL
         PO=ball((0,500),(1.5,0),-5)
         CO=carga((400,300),40)
         #w=world([PO],[CO])
+        v=[]
         while True:
-        
+            
             for event in pygame.event.get():
+                if event.type == MOUSEBUTTONUP:
+                    v=v+[ball(pygame.mouse.get_pos(),(0,0),10)]
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_q:
                         MENU().otra_pantalla()
@@ -71,7 +75,8 @@ class world:
                 if event.type==QUIT:
                     pygame.quit()
                     sys.exit()
-            w.update()
+            
+            world(v,cargas).update()
 
 
 

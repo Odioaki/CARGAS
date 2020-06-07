@@ -47,15 +47,13 @@ class MENU:
                 if event.type == MOUSEBUTTONUP:
                     for boton in botones:
                         boton['on_click'] = False
-                        if self.imagen_panel == pygame.image.load('fondo-pared-ladrillos.jpg'):
-                            self.imagen_panel = pygame.image.load('MENU.jpg')
-                        else:
-                            self.imagen_panel = pygame.image.load('fondo-pared-ladrillos.jpg')
+
+                        
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_q:
                         otra_pantalla = False
             if botones[0]['on_click'] and click:
-                texto_entrada = ""
+                self.imagen_panel = pygame.image.load('fondo-pared-ladrillos.jpg')
                 click = False
             self.dibujar_botones_iniciales(botones)
             
