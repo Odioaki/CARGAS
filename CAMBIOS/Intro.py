@@ -11,7 +11,7 @@ def Iniciar():
         clock=pygame.time.Clock()
         
         screen = pygame.display.set_mode((800, 600))
-        bg_image = pygame.image.load("fondo-pared-ladrillos.jpg")
+        bg_image = pygame.image.load("INICIO.png")
         bg_image = bg_image.convert()
         screen.blit(bg_image,(0,0))
         clock.tick(10)    
