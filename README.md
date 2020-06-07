@@ -9,5 +9,5 @@ Se esta trabajando en la interfaz de modo que aparezca un menú y posteriormente
 que el jugador puede arbitrariamente hacer el sistema el cual quiere simular. 
 
 #Autores
-- Jean Pierre
+- Jean Pierre Cifuentes
 - Juan Diego Zuniga 
