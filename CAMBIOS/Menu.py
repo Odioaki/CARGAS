@@ -12,6 +12,8 @@ class MENU:
         self.imagen_boton = pygame.image.load("flecha.png")
         self.BLANCO = (255, 255, 255)
         self.imagen_boton_pressed = pygame.image.load("flecha2.png")
+        self.imagen_boton_2= pygame.transform.flip(self.imagen_boton, True, False)
+        self.imagen_boton_pressed_2= pygame.transform.flip(self.imagen_boton_pressed, True, False)
         self.imagen_panel = pygame.image.load('MENU.jpg')
         self.clock=pygame.time.Clock()
         self.screen = pygame.display.set_mode((800, 600))
@@ -30,10 +32,13 @@ class MENU:
     def otra_pantalla(self):
         self.clock.tick(10)    
         otra_pantalla = True
-        r_boton_1_1 = self.imagen_boton.get_rect()
         botones = []
+        r_boton_1_1 = self.imagen_boton.get_rect()
         r_boton_1_1.topleft = [700, 540]
         botones.append({ 'imagen': self.imagen_boton, 'imagen_pressed': self.imagen_boton_pressed, 'rect': r_boton_1_1, 'on_click': False})
+        r_boton_2_2 = self.imagen_boton.get_rect()
+        r_boton_2_2.topleft = [600, 540]
+        botones.append({ 'imagen': self.imagen_boton_2, 'imagen_pressed': self.imagen_boton_pressed_2, 'rect': r_boton_2_2, 'on_click': False})
         while otra_pantalla:
             for event in pygame.event.get():
                 if event.type==QUIT:
@@ -54,6 +59,9 @@ class MENU:
                         otra_pantalla = False
             if botones[0]['on_click'] and click:
                 self.imagen_panel = pygame.image.load('fondo-pared-ladrillos.jpg')
+                click = False
+            if botones[1]['on_click'] and click:
+                self.imagen_panel = pygame.image.load('MENU.jpg')
                 click = False
             self.dibujar_botones_iniciales(botones)
             
